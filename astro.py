@@ -95,7 +95,7 @@ with st.sidebar:
         try:
 
             response = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="llama3-70b-8192",
                 messages=[
                     {"role": "system", "content": SYSTEM_INSTRUCTION},
                     {"role": "user", "content": prompt}
