@@ -129,9 +129,7 @@ Provide:
 7. Challenges
 8. Spiritual Outlook
 """
- 
 try:
-
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
         messages=[
@@ -141,7 +139,6 @@ try:
         temperature=0.5,
         max_tokens=2000
     )
-
     answer = response.choices[0].message.content
 
 except Exception as e:
