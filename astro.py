@@ -6,7 +6,7 @@ from google.genai import types
 # GEMINI CONFIGURATION
 # ===================================
 
-API_KEY = "AQ.Ab8RN6KdLDfzJMCq8bOJ3-G8XTkqVVZ8ykZVCq_r0PZy3GGqpg"
+API_KEY = "AQ.Ab8RN6IUN5mKvpIZrs1xnqIU6b08yqm7y_T8xEeP2BtfsejBUg"
 
 client = genai.Client(api_key=API_KEY)
 
