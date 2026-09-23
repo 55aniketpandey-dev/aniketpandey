@@ -129,23 +129,22 @@ with st.sidebar:
         8. Spiritual Outlook
         """
 
-        try:
+       try:
+           response = client.chat.completions.create(
+               model="llama-3.3-70b-versatile",
+               messages=[
+                  {"role": "system", "content": SYSTEM_INSTRUCTION},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.5,
+        max_tokens=2000
+    )
 
-            response = client.models.generate_content(
-                model="gemini-3.6-flash",
-                contents=prompt,
-                config=types.GenerateContentConfig(
-                    system_instruction=SYSTEM_INSTRUCTION,
-                    temperature=0.5,
-                    max_output_tokens=2000
-                )
-            )
+           st.session_state.report =
+           response.choices[0].message.content
 
-            st.session_state.report = response.text
-
-        except Exception as e:
-
-            st.error(f"Gemini Error: {e}")
+except Exception as e:
+    st.error(f"Groq Error: {e}")
 
     st.divider()
 
