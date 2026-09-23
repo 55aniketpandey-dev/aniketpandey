@@ -300,23 +300,23 @@ with tab2:
                 "Consulting the stars..."
             ):
 
-                try:
+             try:
 
-                   response = client.chat.completions.create(
-    model="llama-3.3-70b-versatile",
-    messages=[
-        {"role": "system", "content": SYSTEM_INSTRUCTION},
-        {"role": "user", "content": prompt}
-    ],
-    temperature=0.5,
-    max_tokens=2000
-)
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[
+            {"role": "system", "content": SYSTEM_INSTRUCTION},
+            {"role": "user", "content": final_prompt}
+        ],
+        temperature=0.5,
+        max_tokens=2000
+    )
 
-st.session_state.report = response.choices[0].message.content
+    answer = response.choices[0].message.content
 
-                except Exception as e:
+except Exception as e:
 
-                    answer = f"❌ Error: {e}"
+    answer = f"❌ Error: {e}"
 
             st.markdown(answer)
 
