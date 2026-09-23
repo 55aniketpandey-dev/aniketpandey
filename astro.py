@@ -202,7 +202,7 @@ with tab2:
                 try:
 
                     response = client.chat.completions.create(
-                        model="llama-3.3-70b-versatile",
+                        model="llama-3.1-8b-instant",
                         messages=[
                             {"role": "system", "content": SYSTEM_INSTRUCTION},
                             {"role": "user", "content": final_prompt}
