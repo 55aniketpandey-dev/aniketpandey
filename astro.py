@@ -1,14 +1,14 @@
 import streamlit as st
-from google import genai
-from google.genai import types
+from groq import Groq
+
 
 # ===================================
 # GEMINI CONFIGURATION
 # ===================================
 
-API_KEY = "AQ.Ab8RN6IUN5mKvpIZrs1xnqIU6b08yqm7y_T8xEeP2BtfsejBUg"
-client = genai.Client(api_key=API_KEY)
-
+client = Groq(
+    api_key=st.secrets["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"]
+)
 SYSTEM_INSTRUCTION = """
 You are AstroAdvisor AI.
 
@@ -302,17 +302,17 @@ with tab2:
 
                 try:
 
-                    response = client.models.generate_content(
-                        model="gemini-3.6-flash",
-                        contents=final_prompt,
-                        config=types.GenerateContentConfig(
-                            system_instruction=SYSTEM_INSTRUCTION,
-                            temperature=0.5,
-                            max_output_tokens=1000
-                        )
-                    )
+                   response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[
+        {"role": "system", "content": SYSTEM_INSTRUCTION},
+        {"role": "user", "content": prompt}
+    ],
+    temperature=0.5,
+    max_tokens=2000
+)
 
-                    answer = response.text
+st.session_state.report = response.choices[0].message.content
 
                 except Exception as e:
 
