@@ -110,10 +110,9 @@ with st.sidebar:
     birth_time = st.time_input("Time of Birth")
 
     birthplace = st.text_input("Place of Birth")
-
-   if st.button("🔮 Generate Prediction"):
- 
-prompt = f"""
+    if st.button("🔮 Generate Prediction"):
+       
+        prompt = f"""
 Name: {name}
 Date of Birth: {dob}
 Time of Birth: {birth_time}
