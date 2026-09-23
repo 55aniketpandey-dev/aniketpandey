@@ -95,7 +95,7 @@ with st.sidebar:
         try:
 
             response = client.chat.completions.create(
-                model="llama3-70b-8192",
+                model="openai/gpt-oss-20b",
                 messages=[
                     {"role": "system", "content": SYSTEM_INSTRUCTION},
                     {"role": "user", "content": prompt}
