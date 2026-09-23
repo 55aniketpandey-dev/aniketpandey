@@ -9,6 +9,8 @@ from groq import Groq
 client = Groq(
     api_key=st.secrets["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"]
 )
+GROQ_API_KEY="gsk_your_actual_key_here"
+
 SYSTEM_INSTRUCTION = """
 You are AstroAdvisor AI.
 
@@ -109,42 +111,43 @@ with st.sidebar:
 
     birthplace = st.text_input("Place of Birth")
 
-    if st.button("🔮 Generate Prediction"):
+   if st.button("🔮 Generate Prediction"):
+ 
+prompt = f"""
+Name: {name}
+Date of Birth: {dob}
+Time of Birth: {birth_time}
+Place of Birth: {birthplace}
+ 
+Provide:
+ 
+1. Personality Analysis
+2. Career Analysis
+3. Financial Analysis
+4. Marriage Analysis
+5. Health Tendencies
+6. Strengths
+7. Challenges
+8. Spiritual Outlook
+"""
+ 
+try:
 
-        prompt = f"""
-        Name: {name}
-        Date of Birth: {dob}
-        Time of Birth: {birth_time}
-        Place of Birth: {birthplace}
-
-        Provide:
-
-        1. Personality Analysis
-        2. Career Analysis
-        3. Financial Analysis
-        4. Marriage Analysis
-        5. Health Tendencies
-        6. Strengths
-        7. Challenges
-        8. Spiritual Outlook
-        """
-
-       try:
-           response = client.chat.completions.create(
-               model="llama-3.3-70b-versatile",
-               messages=[
-                  {"role": "system", "content": SYSTEM_INSTRUCTION},
-            {"role": "user", "content": prompt}
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[
+            {"role": "system", "content": SYSTEM_INSTRUCTION},
+            {"role": "user", "content": final_prompt}
         ],
         temperature=0.5,
         max_tokens=2000
     )
 
-           st.session_state.report =
-           response.choices[0].message.content
+    answer = response.choices[0].message.content
 
 except Exception as e:
-    st.error(f"Groq Error: {e}")
+
+    answer = f"❌ Error: {e}"
 
     st.divider()
 
