@@ -6,8 +6,7 @@ from groq import Groq
 # ==========================
 
 client = Groq(
-    api_key=["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"]
-)
+    api_key="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")
 
 SYSTEM_INSTRUCTION = """
 You are AstroAdvisor AI.
